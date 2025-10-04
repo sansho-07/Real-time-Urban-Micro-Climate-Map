@@ -1,0 +1,97 @@
+{
+  "timestamp": "2025-10-04T11:39:48.134685+00:00",
+  "results": [
+    {
+      "webcam_id": "downtown-plaza",
+      "webcam_name": "Downtown Plaza",
+      "location": {
+        "lat": 40.7589,
+        "lng": -73.9851
+      },
+      "analysis": {
+        "sun_exposure": 0.574,
+        "shadow_ratio": 0.426,
+        "brightness_avg": 169.9,
+        "wetness_detected": false,
+        "wetness_confidence": 0.19,
+        "comfort_level": "moderate"
+      },
+      "timestamp": "2025-10-04T11:39:48.134369+00:00",
+      "status": "success"
+    },
+    {
+      "webcam_id": "brooklyn-bridge",
+      "webcam_name": "Brooklyn Bridge",
+      "location": {
+        "lat": 40.7061,
+        "lng": -73.9969
+      },
+      "analysis": {
+        "sun_exposure": 0.765,
+        "shadow_ratio": 0.235,
+        "brightness_avg": 208.1,
+        "wetness_detected": false,
+        "wetness_confidence": 0.12,
+        "comfort_level": "comfortable"
+      },
+      "timestamp": "2025-10-04T11:39:48.134402+00:00",
+      "status": "success"
+    },
+    {
+      "webcam_id": "central-park",
+      "webcam_name": "Central Park North",
+      "location": {
+        "lat": 40.7967,
+        "lng": -73.9496
+      },
+      "analysis": {
+        "sun_exposure": 0.702,
+        "shadow_ratio": 0.298,
+        "brightness_avg": 195.5,
+        "wetness_detected": false,
+        "wetness_confidence": 0.15,
+        "comfort_level": "comfortable"
+      },
+      "timestamp": "2025-10-04T11:39:48.134418+00:00",
+      "status": "success"
+    },
+    {
+      "webcam_id": "times-square",
+      "webcam_name": "Times Square",
+      "location": {
+        "lat": 40.758,
+        "lng": -73.9855
+      },
+      "analysis": {
+        "sun_exposure": 0.603,
+        "shadow_ratio": 0.397,
+        "brightness_avg": 175.6,
+        "wetness_detected": false,
+        "wetness_confidence": 0.12,
+        "comfort_level": "moderate"
+      },
+      "timestamp": "2025-10-04T11:39:48.134435+00:00",
+      "status": "success"
+    },
+    {
+      "webcam_id": "hudson-yards",
+      "webcam_name": "Hudson Yards",
+      "location": {
+        "lat": 40.7536,
+        "lng": -74.0014
+      },
+      "analysis": {
+        "sun_exposure": 0.77,
+        "shadow_ratio": 0.23,
+        "brightness_avg": 209.1,
+        "wetness_detected": false,
+        "wetness_confidence": 0.07,
+        "comfort_level": "comfortable"
+      },
+      "timestamp": "2025-10-04T11:39:48.134447+00:00",
+      "status": "success"
+    }
+  ],
+  "total_analyzed": 5,
+  "mode": "demo"
+}
