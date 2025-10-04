@@ -2,82 +2,102 @@
 
 Real-time urban micro-climate monitoring using public webcams, computer vision, and interactive mapping.
 
-## Project Overview
+## 🚀 Quick Start
+
+\`\`\`bash
+# Install dependencies
+npm install
+
+# Start application
+npm run dev
+
+# Open browser
+http://localhost:3000
+\`\`\`
+
+That's it! The app runs in demo mode with realistic mock data.
+
+## 📋 Project Overview
 
 This application creates a hyper-local "comfort map" of a city by analyzing public webcam feeds in real-time to infer environmental conditions like sun exposure and wetness that are not captured by official weather data.
 
-## Features
+### Demo Mode (Default)
 
-- **Data Ingestion Pipeline**: Continuously fetches images from public webcams using asyncio and aiohttp
-- **Computer Vision Analysis**: Analyzes images using OpenCV to detect:
-  - Sun exposure (shadow vs. bright area detection)
-  - Wetness (advanced multi-method detection with confidence scoring)
-- **Real-time Dashboard**: Interactive map with live updates via WebSocket
-- **Heatmap Visualization**: Toggle between marker and heatmap views
-- **WebSocket Streaming**: Real-time data push from backend to frontend
-- **City-wide Analytics**: Aggregated statistics and trends
-- **Redis Caching**: Fast data retrieval with 5-minute TTL
-- **Docker Deployment**: Production-ready containerized setup
+The application includes a **demo mode** that generates realistic climate data without requiring real webcam URLs:
 
-## Technology Stack
+- ✅ Works immediately after `npm run dev`
+- ✅ Generates time-based sun exposure (high at midday, low at night)
+- ✅ Simulates wetness conditions
+- ✅ Real-time updates via Server-Sent Events
+- ✅ Perfect for testing and development
 
-### Backend
-- **Python**: Data ingestion and CV analysis
-- **FastAPI**: WebSocket endpoints
-- **OpenCV**: Computer vision processing
-- **asyncio/aiohttp**: Asynchronous image fetching
-- **Redis**: Caching layer
+### Production Mode
+
+For real webcam analysis:
+- Configure actual webcam URLs
+- Run Python pipeline for image fetching
+- Use OpenCV for computer vision analysis
+
+See [SETUP.md](SETUP.md) for detailed instructions.
+
+## ✨ Features
+
+- **Interactive Map**: Leaflet-based map with clickable markers
+- **Real-time Updates**: Live data streaming via Server-Sent Events
+- **Heatmap Visualization**: Toggle between markers and heatmap views
+- **Computer Vision**: OpenCV-based sun/shadow and wetness detection
+- **Time-based Simulation**: Demo data adjusts based on time of day
+- **Responsive Design**: Works on desktop and mobile
+- **Docker Support**: Production-ready containerization
+
+## 🛠 Technology Stack
 
 ### Frontend
-- **Next.js 15**: React framework with App Router
-- **React**: UI components
-- **Leaflet**: Interactive mapping with heatmap support
-- **WebSockets**: Real-time data updates
-- **shadcn/ui**: Component library
+- **Next.js 15** - React framework with App Router
+- **React 18** - UI library
+- **Leaflet** - Interactive mapping
+- **TypeScript** - Type safety
+- **Tailwind CSS** - Styling
+- **shadcn/ui** - Component library
 
-### DevOps
-- **Docker**: Containerization
-- **Docker Compose**: Multi-service orchestration
-- **Vercel**: Frontend deployment (optional)
+### Backend (Optional)
+- **Python 3.8+** - Data processing
+- **OpenCV** - Computer vision
+- **FastAPI** - WebSocket server
+- **aiohttp** - Async HTTP client
+- **Redis** - Caching (optional)
 
-## Project Structure
+## 📁 Project Structure
 
 \`\`\`
 ├── app/
 │   ├── api/
-│   │   ├── webcams/route.ts    # Webcam list endpoint
-│   │   ├── analyze/route.ts    # CV analysis endpoint
-│   │   └── ws/route.ts         # WebSocket/SSE endpoint
+│   │   ├── webcams/route.ts       # Webcam locations
+│   │   ├── analysis/
+│   │   │   └── latest/route.ts    # Latest analysis data
+│   │   └── ws/route.ts            # Server-Sent Events
 │   ├── layout.tsx
 │   ├── page.tsx
 │   └── globals.css
 ├── components/
-│   ├── climate-map.tsx         # Main map with heatmap
+│   ├── climate-map.tsx            # Main map component
 │   ├── header.tsx
 │   ├── stats-panel.tsx
-│   ├── analysis-panel.tsx      # City-wide analytics
-│   └── ui/                     # shadcn/ui components
+│   └── ui/                        # shadcn/ui components
 ├── scripts/
-│   ├── fetch_webcam_images.py  # Data ingestion
-│   ├── cv_analysis.py          # Computer vision module
-│   ├── advanced_cv_analysis.py # Enhanced wetness detection
-│   ├── integrated_pipeline.py  # Combined pipeline
-│   └── websocket_server.py     # FastAPI WebSocket server
-├── lib/
-│   ├── cv-service.ts           # Frontend CV service
-│   └── redis_cache.py          # Redis caching layer
+│   ├── fetch_webcam_images.py     # Image fetching
+│   ├── cv_analysis.py             # Computer vision
+│   ├── integrated_pipeline.py     # Main pipeline
+│   └── websocket_server.py        # WebSocket server
 ├── hooks/
-│   └── use-websocket.ts        # WebSocket hook
+│   └── use-websocket.ts           # WebSocket hook
 ├── types/
-│   └── webcam.ts               # TypeScript types
-├── Dockerfile                   # Production Docker image
-├── docker-compose.yml          # Multi-service setup
-├── requirements.txt            # Python dependencies
-├── DEPLOYMENT.md               # Deployment guide
+│   └── webcam.ts                  # TypeScript types
+├── SETUP.md                       # Detailed setup guide
 └── README.md
 \`\`\`
 
-## Implementation Phases
+## 🎯 Implementation Phases
 
 ### ✅ Phase 1: Data Ingestion & Map Frontend
 - Python script for fetching webcam images
@@ -88,125 +108,163 @@ This application creates a hyper-local "comfort map" of a city by analyzing publ
 ### ✅ Phase 2: Computer Vision Analysis
 - OpenCV-based sun/shadow detection
 - Wetness detection via reflections
-- Integrated pipeline combining fetch + analysis
-- Analysis API endpoints
-- City-wide analytics panel
+- Integrated pipeline
+- Demo mode with mock data
 
-### ✅ Phase 3: Real-time WebSocket Connection
-- Server-Sent Events (SSE) endpoint in Next.js
-- FastAPI WebSocket server
-- Real-time data push to frontend
+### ✅ Phase 3: Real-time Connection
+- Server-Sent Events endpoint
+- Real-time data streaming
 - Dynamic marker updates
-- Live connection status indicator
+- Connection status indicator
 
-### ✅ Phase 4: Enhancements & Deployment
-- Advanced wetness detection with confidence scoring
-- Heatmap visualization layer
-- Enhanced legend and tooltips
-- Docker deployment configuration
-- Redis caching layer
-- Production-ready setup
+### ✅ Phase 4: Enhancements
+- Heatmap visualization
+- Time-based data simulation
+- Enhanced UI/UX
+- Docker deployment
 
-## Getting Started
+## 📖 Documentation
 
-### Local Development
+- **[SETUP.md](SETUP.md)** - Complete setup and deployment guide
+- **[DEPLOYMENT.md](DEPLOYMENT.md)** - Advanced deployment options
 
-1. Install dependencies:
-\`\`\`bash
-npm install
-pip install -r requirements.txt
-\`\`\`
+## 🔧 Configuration
 
-2. Start Redis (optional):
-\`\`\`bash
-docker run -d -p 6379:6379 redis:7-alpine
-\`\`\`
+### Demo Mode (Default)
 
-3. Run the development server:
+No configuration needed! Just run:
+
 \`\`\`bash
 npm run dev
 \`\`\`
 
-4. Run the WebSocket server:
-\`\`\`bash
-python scripts/websocket_server.py
+### Production Mode
+
+1. Edit `scripts/integrated_pipeline.py`:
+\`\`\`python
+DEMO_MODE = False
 \`\`\`
 
-5. Run the data pipeline:
+2. Configure webcam URLs in `scripts/fetch_webcam_images.py`
+
+3. Run pipeline:
 \`\`\`bash
+python scripts/integrated_pipeline.py --production --continuous 300
+\`\`\`
+
+## 🚢 Deployment
+
+### Vercel (Frontend)
+
+\`\`\`bash
+git push
+# Deploy via Vercel dashboard
+\`\`\`
+
+### Docker (Full Stack)
+
+\`\`\`bash
+docker-compose up -d
+\`\`\`
+
+### Traditional Server
+
+\`\`\`bash
+npm run build
+pm2 start npm --name "frontend" -- start
+pm2 start "python3 scripts/integrated_pipeline.py --continuous 300" --name "pipeline"
+\`\`\`
+
+See [SETUP.md](SETUP.md) for detailed deployment instructions.
+
+## 🧪 Testing
+
+\`\`\`bash
+# Test frontend
+npm run dev
+
+# Test API endpoints
+curl http://localhost:3000/api/analysis/latest
+curl http://localhost:3000/api/webcams
+
+# Test pipeline
 python scripts/integrated_pipeline.py
 \`\`\`
 
-### Docker Deployment
+## 🐛 Troubleshooting
 
+### No data showing
+- Check browser console for errors
+- Verify API: `http://localhost:3000/api/analysis/latest`
+- Restart: `npm run dev`
+
+### Python errors
 \`\`\`bash
-# Start all services
-docker-compose up -d
-
-# View logs
-docker-compose logs -f
-
-# Stop services
-docker-compose down
+pip install --upgrade -r requirements.txt
 \`\`\`
 
-See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions.
+### Port conflicts
+\`\`\`bash
+npx kill-port 3000
+PORT=3001 npm run dev
+\`\`\`
 
-## Features in Detail
+See [SETUP.md](SETUP.md) for more troubleshooting tips.
 
-### Heatmap Visualization
-Toggle between marker and heatmap views to see sun exposure intensity across the city. The heatmap uses a gradient from gray (low sun) to yellow (high sun).
+## 🎨 Features in Detail
 
-### Advanced Wetness Detection
-Uses four detection methods:
-1. Reflection detection (specular highlights)
-2. Dark surface detection (wet pavement)
-3. Color saturation analysis
-4. Edge detection (water puddles)
+### Interactive Map
+- 5 webcam locations in NYC
+- Color-coded markers (yellow=high sun, orange=medium, gray=low)
+- Click markers for detailed data
+- Smooth animations
 
-Combines scores with confidence metrics for accurate results.
+### Heatmap Layer
+- Toggle heatmap visualization
+- Gradient from gray (low) to yellow (high sun)
+- Smooth interpolation between points
 
 ### Real-time Updates
-WebSocket connection provides live updates every 3 seconds, automatically updating all markers and statistics without page refresh.
+- Server-Sent Events for live data
+- Updates every 3 seconds
+- Connection status indicator
+- Automatic reconnection
 
-### Redis Caching
-All analysis results are cached in Redis with a 5-minute TTL for fast retrieval and reduced computation.
+### Demo Data
+- Time-based sun exposure
+- Morning: 60% sun
+- Midday: 85% sun
+- Afternoon: 70% sun
+- Night: 20% sun
+- Random wetness (20% chance)
 
-## API Endpoints
+## 🔮 Future Enhancements
 
-- \`GET /api/webcams\` - List of webcam locations
-- \`POST /api/analyze\` - Trigger CV analysis on image
-- \`GET /api/analyze\` - Get latest analysis results
-- \`GET /api/ws\` - Server-Sent Events for real-time updates
-- \`WS ws://localhost:8000/ws\` - FastAPI WebSocket endpoint
+- [ ] Historical data visualization
+- [ ] Weather alerts and notifications
+- [ ] Mobile app (React Native)
+- [ ] Multi-city support
+- [ ] User-submitted webcams
+- [ ] Advanced CV models
+- [ ] Predictive analytics
 
-## Computer Vision Algorithms
+## 📄 License
 
-### Sun Exposure Detection
-1. Convert image to grayscale
-2. Apply Gaussian blur to reduce noise
-3. Use adaptive thresholding to create binary image
-4. Calculate ratio of bright pixels (sun) to total pixels
+MIT License - See LICENSE file for details
 
-### Advanced Wetness Detection
-1. Convert to HSV and LAB color spaces
-2. Detect reflections (high value, low saturation)
-3. Detect dark wet surfaces (low value)
-4. Analyze color saturation patterns
-5. Use edge detection for puddle boundaries
-6. Combine with weighted scoring and confidence metrics
+## 🤝 Contributing
 
-## Contributing
+Contributions welcome! Please open an issue or PR.
 
-Contributions are welcome! Please read the contributing guidelines before submitting PRs.
+## 📧 Support
 
-## License
+- GitHub Issues for bugs
+- Check SETUP.md for common issues
+- Review documentation
 
-MIT
+## 🙏 Acknowledgments
 
-## Acknowledgments
-
-- OpenCV for computer vision capabilities
+- OpenCV for computer vision
 - Leaflet for mapping
-- shadcn/ui for UI components
-- Vercel for hosting platform
+- shadcn/ui for components
+- Vercel for hosting

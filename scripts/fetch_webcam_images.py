@@ -60,11 +60,12 @@ async def fetch_image(session: aiohttp.ClientSession, webcam: dict) -> dict:
                 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
                 filename = f"{webcam['id']}_{timestamp}.jpg"
                 filepath = OUTPUT_DIR / filename
-                
+
                 content = await response.read()
-                with open(filepath, "wb") as f:
-                    f.write(content)
-                
+                import aiofiles
+                async with aiofiles.open(filepath, "wb") as f:
+                    await f.write(content)
+
                 print(f"[v0] Successfully fetched {webcam['name']}: {filepath}")
                 return {
                     "id": webcam["id"],

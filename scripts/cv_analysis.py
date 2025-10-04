@@ -87,7 +87,7 @@ def analyze_wetness(image_path: str) -> float:
         hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
         
         # Extract channels
-        hue, saturation, value = cv2.split(hsv)
+        _, saturation, value = cv2.split(hsv)
         
         # Detect reflections (high saturation, high value)
         reflection_mask = cv2.bitwise_and(
@@ -190,7 +190,7 @@ def create_visualization(image_path: str, output_path: str = None) -> str:
         
         # Create overlay
         overlay = img.copy()
-        height, width = img.shape[:2]
+        _, _ = img.shape[:2]
         
         # Add semi-transparent background for text
         cv2.rectangle(overlay, (10, 10), (300, 100), (0, 0, 0), -1)
